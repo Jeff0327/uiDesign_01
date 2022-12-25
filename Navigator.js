@@ -7,7 +7,16 @@ export default function Navigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={{
+          headerTitle: "",
+          headerBackTitle: "",
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "black" },
+        }}
+      />
     </Stack.Navigator>
   );
 }

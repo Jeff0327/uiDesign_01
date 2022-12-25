@@ -1,18 +1,18 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, Image } from "react-native";
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={require("../publicsource/images/img1.png")} />
-      </View>
       <View style={styles.titleContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={require("../publicsource/images/img1.png")} />
+        </View>
         <Text style={styles.title}>Lamborghini Aventador</Text>
         <Text style={styles.description}>Lamborghini Aventador</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.informationBtn}>
+        <Pressable onPress={() => navigation.navigate("Detail")} style={styles.informationBtn}>
           <Text style={styles.informationText}>Infomation</Text>
         </Pressable>
       </View>
@@ -57,7 +57,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  informationBtn: {},
+  informationBtn: {
+    backgroundColor: "#4682B4",
+    shadowOpacity: "50%",
+    borderRadius: 10,
+    width: 200,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   informationText: {
     color: "white",
     fontSize: 18,
