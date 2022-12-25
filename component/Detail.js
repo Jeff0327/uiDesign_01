@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, Image, StyleSheet, ScrollView, Dimensions } from "react-native";
-
 import Carousel from "react-native-reanimated-carousel";
+
 export default function Detail() {
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
+  const [isBtn, setIsBtn] = useState(false);
+  const [isBtn2, setIsBtn2] = useState(false);
 
+  // const font = [require({ uri: "https://fonts.googleapis.com/css2?family=Oswald&display=swap" })];
   const images = {
     img01: "../images/img1.png",
     img02: "../images/img2.png",
@@ -19,24 +22,26 @@ export default function Detail() {
     It entered production in 1963 as a 3.5 litre displacing 3,465 cubic centimetres (211.4 cu in) fitted on Lamborghini's first car, the Lamborghini 350GT.[1][2] The engine remained in use for almost fifty years; the final version of 6.5 litre displacement was installed in the Lamborghini Murciélago. Lamborghini discontinued their first-generation V12 after the Murcielago, opting for a brand-new V12 that first saw use on the Lamborghini Aventador.`,
   };
 
-  let isBtn = false;
-  let isBtn2 = false;
   const SeemoreBtn = () => {
     if (!isBtn) {
-      isBtn = true;
-      console.log(isBtn + "눌름");
+      setIsBtn(true);
     } else {
-      isBtn = false;
-      console.log(isBtn + "눌름");
+      setIsBtn(false);
     }
   };
   const SeemoreBtn2 = () => {
     if (!isBtn2) {
-      isBtn2 = true;
+      setIsBtn2(true);
       console.log(isBtn2 + "누름");
     } else {
-      isBtn2 = false;
+      setIsBtn2(false);
       console.log(isBtn2 + "누름");
+    }
+  };
+  const HideText = () => {
+    if (isBtn || isBtn2) {
+      setIsBtn(false);
+      setIsBtn2(false);
     }
   };
   return (
@@ -56,20 +61,16 @@ export default function Detail() {
       <View style={styles.contentTextcontainer}>
         <Text style={styles.contentTextstyle}>{contentText.history}</Text>
 
-        <Pressable onPress={SeemoreBtn}>
-          <Text style={styles.seeMoreText}>See More.</Text>
-        </Pressable>
-        {isBtn ? (
+        {isBtn === true ? (
           <View style={styles.contentTextstyle}>
-            <Text style={styles.secontentTextstyle}>{contentText.history}</Text>
+            <Text style={styles.secContentTextstyle}>{contentText.history}</Text>
           </View>
-        ) : null}
+        ) : (
+          <Pressable onPress={SeemoreBtn}>
+            <Text style={styles.seeMoreText}>See More.</Text>
+          </Pressable>
+        )}
       </View>
-      <Text style={styles.contentTextstyle}>If you want to see more about Engine infomation</Text>
-      <Pressable onPress={SeemoreBtn2}>
-        <Text style={styles.seeMoreText}>click here</Text>
-      </Pressable>
-      {isBtn2 ? <Text>{seccontentText.engineInfo}</Text> : null}
     </ScrollView>
   );
 }
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white",
   },
-  secontentTextstyle: {
+  secContentTextstyle: {
     textAlign: "center",
     justifyContent: "center",
     fontSize: 12,
