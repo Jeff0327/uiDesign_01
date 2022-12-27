@@ -44,18 +44,17 @@ export default function Detail() {
       setIsBtn2(false);
     }
   };
+  const imgsources = [require("../publicsource/images/img2.png")];
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Carousel
         loop
         width={width}
         height={height / 3}
         autoPlay={true}
         scrollAnimationDuration={3000}
-        data={Object.keys(images)}
-        renderItem={({ index }) => (
-          <Image style={styles.imgStyle} source={require("../publicsource/images/img2.png")} />
-        )}
+        data={imgsources}
+        renderItem={({ index }) => <Image style={styles.imgStyle} source={imgsources[index]} />}
       />
 
       <View style={styles.contentTextcontainer}>
@@ -71,7 +70,26 @@ export default function Detail() {
           </Pressable>
         )}
       </View>
-    </ScrollView>
+      <View
+        style={{
+          backgroundColor: "white",
+          height: 150,
+          borderRadius: 15,
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Pressable
+          style={{
+            justifyContent: "space-around",
+            alignContent: "flex-end",
+            alignItems: "center",
+            width: 30,
+            height: 30,
+            backgroundColor: "#FF0000",
+            borderRadius: 15,
+          }}></Pressable>
+      </View>
+    </View>
   );
 }
 
@@ -91,9 +109,7 @@ const styles = StyleSheet.create({
     resizeMode: "center",
   },
   contentTextcontainer: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
   },
   seeMoreText: {
     textAlign: "center",
